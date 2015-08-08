@@ -12,9 +12,9 @@ docker-machine -D create \
     consul2
 
 eval $(docker-machine env consul2)
-PUBLIC_IP=$(docker-machine inspect consul2 | grep \"IPAddress | awk -F: '{print $2}' | awk -F\" '{print $2}')
+PUBLIC_IP=$(docker-machine ip consul2)
 DOCKER_IP=$(docker-machine inspect consul2 | grep PrivateIPAddress | awk -F: '{print $2}' | awk -F\" '{print $2}')
-CONSUL_MASTER=$(docker-machine inspect consul1 | grep PrivateIPAddress | awk -F: '{print $2}' | awk -F\" '{print $2}')
+CONSUL_MASTER=$(docker-machine ip consul1)
 
 docker run -d -h node2 \
     -p $DOCKER_IP:8300:8300 \
