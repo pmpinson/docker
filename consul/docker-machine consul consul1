@@ -12,7 +12,7 @@ docker-machine -D create \
     consul1
 
 eval $(docker-machine env consul1)
-PUBLIC_IP=$(docker-machine inspect consul1 | grep \"IPAddress | awk -F: '{print $2}' | awk -F\" '{print $2}')
+PUBLIC_IP=$(docker-machine ip consul1)
 DOCKER_IP=$(docker-machine inspect consul1 | grep PrivateIPAddress | awk -F: '{print $2}' | awk -F\" '{print $2}')
 
 docker run -d -h node1 \
